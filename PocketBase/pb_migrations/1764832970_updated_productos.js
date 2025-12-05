@@ -1,0 +1,20 @@
+/// <reference path="../pb_data/types.d.ts" />
+migrate((app) => {
+  const collection = app.findCollectionByNameOrId("pbc_308246142")
+
+  // update collection data
+  unmarshal({
+    "listRule": "@collection.categorias.id != \"\""
+  }, collection)
+
+  return app.save(collection)
+}, (app) => {
+  const collection = app.findCollectionByNameOrId("pbc_308246142")
+
+  // update collection data
+  unmarshal({
+    "listRule": "@request.auth.id != \"\""
+  }, collection)
+
+  return app.save(collection)
+})
